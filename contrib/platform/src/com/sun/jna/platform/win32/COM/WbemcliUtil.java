@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
@@ -482,7 +483,7 @@ public class WbemcliUtil {
     public static boolean hasNamespace(String namespace) {
         // Strip off leading ROOT\ for valid match
         String ns = namespace;
-        if (namespace.toUpperCase().startsWith("ROOT\\")) {
+        if (namespace.toUpperCase(Locale.ROOT).startsWith("ROOT\\")) {
             ns = namespace.substring(5);
         }
         // Test

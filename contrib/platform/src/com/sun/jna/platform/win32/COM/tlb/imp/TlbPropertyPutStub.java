@@ -23,6 +23,8 @@
  */
 package com.sun.jna.platform.win32.COM.tlb.imp;
 
+import java.util.Locale;
+
 import com.sun.jna.platform.win32.OaIdl.ELEMDESC;
 import com.sun.jna.platform.win32.OaIdl.FUNCDESC;
 import com.sun.jna.platform.win32.COM.TypeInfoUtil;
@@ -62,7 +64,7 @@ public class TlbPropertyPutStub extends TlbAbstractMethod {
             ELEMDESC elemdesc = funcDesc.lprgelemdescParam.elemDescArg[i];
             String varType = this.getType(elemdesc);
             methodparams += varType + " "
-                    + this.replaceJavaKeyword(names[i].toLowerCase());
+                    + this.replaceJavaKeyword(names[i].toLowerCase(Locale.ROOT));
 
             // if there is more than 1 param
             if (i < (paramCount - 1)) {

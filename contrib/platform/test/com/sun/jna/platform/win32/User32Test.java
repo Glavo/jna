@@ -31,6 +31,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -92,8 +93,8 @@ public class User32Test extends AbstractWin32TestSupport {
     private static DesktopWindow getWindowByProcessPath(final String filePathEnd) {
         final List<DesktopWindow> allWindows = WindowUtils.getAllWindows(false);
         for (final DesktopWindow wnd : allWindows) {
-            if (wnd.getFilePath().toLowerCase()
-                    .endsWith(filePathEnd.toLowerCase())) {
+            if (wnd.getFilePath().toLowerCase(Locale.ROOT)
+                    .endsWith(filePathEnd.toLowerCase(Locale.ROOT))) {
                 return wnd;
             }
         }

@@ -30,10 +30,10 @@ import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Locale;
 import java.util.Properties;
 
 import junit.framework.TestCase;
-import org.junit.Assume;
 
 /** Test loading and unloading native support from various locations.  Note
  * that no JNI classes are directly referenced in these tests.
@@ -235,7 +235,7 @@ public class JNALoadTest extends TestCase implements Paths {
         if (Platform.isWindows()) {
             String vendor = System.getProperty("java.vendor");
             if (vendor != null) {
-                vendor = vendor.toLowerCase();
+                vendor = vendor.toLowerCase(Locale.ROOT);
                 if (vendor.contains("oracle") || vendor.contains("sun")) {
                     System.out.println("Skip " + getName() + " - Fails on Sun JVM windows (32 and 64-bit) (JVM bug), Works with IBM J9 (jdk6) windows");
                     return;

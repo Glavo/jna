@@ -24,6 +24,7 @@ package com.sun.jna;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,7 +73,7 @@ public final class Platform {
     static {
         String osName = System.getProperty("os.name");
         if (osName.startsWith("Linux")) {
-            if ("dalvik".equals(System.getProperty("java.vm.name").toLowerCase())) {
+            if ("dalvik".equalsIgnoreCase(System.getProperty("java.vm.name"))) {
                 osType = ANDROID;
                 // Native libraries on android must be bundled with the APK
                 System.setProperty("jna.nounpack", "true");
@@ -251,7 +252,7 @@ public final class Platform {
     }
 
     static String getCanonicalArchitecture(String arch, int platform) {
-        arch = arch.toLowerCase().trim();
+        arch = arch.toLowerCase(Locale.ROOT).trim();
         if ("powerpc".equals(arch)) {
             arch = "ppc";
         }
@@ -356,7 +357,7 @@ public final class Platform {
                 osPrefix = "kfreebsd-" + arch;
                 break;
             default:
-                osPrefix = name.toLowerCase();
+                osPrefix = name.toLowerCase(Locale.ROOT);
                 int space = osPrefix.indexOf(" ");
                 if (space != -1) {
                     osPrefix = osPrefix.substring(0, space);

@@ -30,6 +30,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.JFrame;
 
@@ -83,7 +84,7 @@ public class PsapiTest {
             assertTrue(
                     "Path didn't contain '" + searchSubStr + "': "
                     + Native.toString(filePathAnsi),
-                    Native.toString(filePathAnsi).toLowerCase()
+                    Native.toString(filePathAnsi).toLowerCase(Locale.ROOT)
                             .contains(searchSubStr));
 
             // check Unicode function
@@ -97,7 +98,7 @@ public class PsapiTest {
             assertTrue(
                     "Path didn't contain '" + searchSubStr + "': "
                     + Native.toString(filePathUnicode),
-                    Native.toString(filePathUnicode).toLowerCase()
+                    Native.toString(filePathUnicode).toLowerCase(Locale.ROOT)
                             .contains(searchSubStr));
 
             // check default function
@@ -117,7 +118,7 @@ public class PsapiTest {
                             memAllocSize / Native.WCHAR_SIZE)),
                     Native.toString(
                             filePathDefault.getCharArray(0, memAllocSize
-                                    / Native.WCHAR_SIZE)).toLowerCase()
+                                    / Native.WCHAR_SIZE)).toLowerCase(Locale.ROOT)
                             .contains(searchSubStr));
         } finally {
             w.dispose();

@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Locale;
 
 import com.sun.jna.platform.win32.OaIdl.TYPEKIND;
 import com.sun.jna.platform.win32.COM.TypeLibUtil;
@@ -138,7 +139,7 @@ public class TlbImp implements TlbConst {
     private void createDir() throws FileNotFoundException {
         String _outputDir = this.cmdlineArgs.getParam(CMD_ARG_OUTPUT_DIR);
         String path = "_jnaCOM_" + System.currentTimeMillis() + "\\myPackage\\"
-                + this.typeLibUtil.getName().toLowerCase() + "\\";
+                + this.typeLibUtil.getName().toLowerCase(Locale.ROOT) + "\\";
 
         if (_outputDir != null) {
             this.comRootDir = new File(_outputDir + "\\" + path);
@@ -160,7 +161,7 @@ public class TlbImp implements TlbConst {
     }
 
     private String getPackageName() {
-        return "myPackage." + this.typeLibUtil.getName().toLowerCase();
+        return "myPackage." + this.typeLibUtil.getName().toLowerCase(Locale.ROOT);
     }
 
     private void writeTextFile(String filename, String str) throws IOException {

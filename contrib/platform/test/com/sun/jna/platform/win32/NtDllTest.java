@@ -30,6 +30,7 @@ import static org.junit.Assert.assertNotEquals;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Locale;
 
 import com.sun.jna.Memory;
 import com.sun.jna.platform.win32.Wdm.KEY_BASIC_INFORMATION;
@@ -66,7 +67,7 @@ public class NtDllTest extends TestCase {
                 keyInformation, resultLength.getValue(), resultLength));
         // show
         // Keys are case insensitive (https://msdn.microsoft.com/de-de/library/windows/desktop/ms724946(v=vs.85).aspx)
-        assertEquals("software", keyInformation.getName().toLowerCase());
+        assertEquals("software", keyInformation.getName().toLowerCase(Locale.ROOT));
         // close key
         assertEquals(W32Errors.ERROR_SUCCESS, Advapi32.INSTANCE.RegCloseKey(phKey.getValue()));
     }

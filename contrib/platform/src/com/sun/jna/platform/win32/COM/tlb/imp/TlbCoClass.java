@@ -23,6 +23,8 @@
  */
 package com.sun.jna.platform.win32.COM.tlb.imp;
 
+import java.util.Locale;
+
 import com.sun.jna.platform.win32.OaIdl.FUNCDESC;
 import com.sun.jna.platform.win32.OaIdl.HREFTYPE;
 import com.sun.jna.platform.win32.OaIdl.INVOKEKIND;
@@ -143,7 +145,7 @@ public class TlbCoClass extends TlbBase {
     }
 
     protected void createCLSIDName(String clsidName) {
-        this.replaceVariable("clsidname", clsidName.toUpperCase());
+        this.replaceVariable("clsidname", clsidName.toUpperCase(Locale.ROOT));
     }
 
     protected void createCLSID(String clsid) {

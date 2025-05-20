@@ -23,6 +23,8 @@
  */
 package com.sun.jna.platform.win32;
 
+import java.util.Locale;
+
 import junit.framework.TestCase;
 
 import com.sun.jna.platform.win32.WinReg.HKEYByReference;
@@ -41,7 +43,7 @@ public class NtDllUtilTest extends TestCase {
         assertEquals(W32Errors.ERROR_SUCCESS, Advapi32.INSTANCE.RegOpenKeyEx(
                 WinReg.HKEY_CURRENT_USER, "Software", 0, WinNT.KEY_WRITE | WinNT.KEY_READ, phKey));
         // Keys are case insensitive (https://msdn.microsoft.com/de-de/library/windows/desktop/ms724946(v=vs.85).aspx)
-        assertEquals("software", NtDllUtil.getKeyName(phKey.getValue()).toLowerCase());
+        assertEquals("software", NtDllUtil.getKeyName(phKey.getValue()).toLowerCase(Locale.ROOT));
         assertEquals(W32Errors.ERROR_SUCCESS, Advapi32.INSTANCE.RegCloseKey(phKey.getValue()));
     }
 }

@@ -23,6 +23,8 @@
  */
 package com.sun.jna.platform.win32.COM.tlb.imp;
 
+import java.util.Locale;
+
 import com.sun.jna.platform.win32.OaIdl.ELEMDESC;
 import com.sun.jna.platform.win32.OaIdl.FUNCDESC;
 import com.sun.jna.platform.win32.COM.TypeInfoUtil;
@@ -60,7 +62,7 @@ public class TlbFunctionVTable extends TlbAbstractMethod {
 
         for (int i = 0; i < paramCount; i++) {
             ELEMDESC elemdesc = funcDesc.lprgelemdescParam.elemDescArg[i];
-            String methodName = names[i + 1].toLowerCase();
+            String methodName = names[i + 1].toLowerCase(Locale.ROOT);
             methodparams += this.getType(elemdesc.tdesc) + " "
                     + this.replaceJavaKeyword(methodName);
             methodvariables += methodName;

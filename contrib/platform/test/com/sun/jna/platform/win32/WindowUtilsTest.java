@@ -29,6 +29,7 @@ import static com.sun.jna.platform.WindowUtilsTest.getPixelColor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
+import java.util.Locale;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -66,7 +67,7 @@ public class WindowUtilsTest extends TestCase {
 
         DesktopWindow explorerProc = null;
         for (final DesktopWindow dw : allWindows) {
-            if (dw.getFilePath().toLowerCase().endsWith("explorer.exe")) {
+            if (dw.getFilePath().toLowerCase(Locale.ROOT).endsWith("explorer.exe")) {
                 explorerProc = dw;
                 break;
             }
@@ -77,7 +78,7 @@ public class WindowUtilsTest extends TestCase {
 
         explorerProc = null;
         for (final DesktopWindow dw : allVisibleWindows) {
-            if (dw.getFilePath().toLowerCase().endsWith("explorer.exe")) {
+            if (dw.getFilePath().toLowerCase(Locale.ROOT).endsWith("explorer.exe")) {
                 explorerProc = dw;
                 break;
             }
@@ -214,7 +215,7 @@ public class WindowUtilsTest extends TestCase {
 
             assertTrue("Path didn't contain '" + searchSubStr + "': "
                        + WindowUtils.getProcessFilePath(hwnd),
-                       WindowUtils.getProcessFilePath(hwnd).toLowerCase()
+                       WindowUtils.getProcessFilePath(hwnd).toLowerCase(Locale.ROOT)
                        .contains(searchSubStr));
         } finally {
             w.dispose();

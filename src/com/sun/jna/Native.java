@@ -1143,7 +1143,7 @@ public final class Native implements Version {
         LOG.log(DEBUG, "Found library resource at {0}", url);
 
         File lib = null;
-        if (url.getProtocol().toLowerCase().equals("file")) {
+        if (url.getProtocol().equalsIgnoreCase("file")) {
             try {
                 lib = new File(new URI(url.toString()));
             }
